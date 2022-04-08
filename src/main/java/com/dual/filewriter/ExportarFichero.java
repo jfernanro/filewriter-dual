@@ -1,23 +1,26 @@
 package com.dual.filewriter;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-
 public class ExportarFichero
 {
   public static void main(String[] args)
   {
-    String file = "logs/file.txt";
+
+    String file = "logs/file.csv";
+    String separador = ";";
+    String[][] datos =
+      {{"JUAN ANTONIO","FERNANDEZ","RODRIGUEZ","JUANFERNANDEZ@BERGER-LEVRAULT.COM","JFERNANDEZ","123456"},
+        {"MANUEL","PEREZ","PEREZ","MPEREZ@GMAIL.COM","MPEREZ","1234"},
+        {"PEDRO","MARTINEZ","FERNANDEZ","PMARTINEZ@GMAIL.COM","PMARTINEZ","12345"},
+        {"ANTONIO","GONZALEZ","GONZALEZ","AGONZALEZ@GMAIL.COM","AGONZALEZ","12345"}};
     try
     {
-      FileWriter writer = new FileWriter(file);
-      PrintWriter printer = new PrintWriter(file);
-      printer.write("Contenido del fichero");
-      printer.close();
-      writer.close();
+
+      UtilidadesCsv utilCsv = new UtilidadesCsv();
+      utilCsv.exportarCsv(datos,file,separador);
+
+      System.out.println("Fin de la escritura");
     }
-    catch(IOException ioe)
+    catch(Exception ioe)
     {
       ioe.printStackTrace();
     }
